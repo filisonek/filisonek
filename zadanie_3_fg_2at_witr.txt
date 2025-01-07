@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Fibonacciego</title>
+</head>
+<body>
+    <h1>Kalkulator Ciągu Fibonacciego</h1>
+    <table>
+        <tr>
+            <td>Numer wyrazu:</td>
+            <td><input type="number" id="liczba" min="0"></td>
+        </tr>
+    </table>
+    <button onclick="kalkulatorFibonacciego()">Oblicz wyraz</button>
+    <p>Wynik: <span id="wynik"></span></p>
+
+    <script>
+        function fibonacci(n) {
+            if (n === 0) return 0;
+            if (n === 1) return 1;
+
+            let a = 0, b = 1, wynik = 0;
+            for (let i = 2; i <= n; i++) {
+                wynik = a + b;
+                a = b;
+                b = wynik;
+            }
+            return wynik;
+        }
+
+        function kalkulatorFibonacciego() {
+            const liczba = parseInt(document.getElementById('liczba').value);
+
+            if (isNaN(liczba) || liczba < 0) {
+                document.getElementById('wynik').textContent = "Nieprawidłowe dane!";
+                return;
+            }
+
+            const wynik = fibonacci(liczba);
+            document.getElementById('wynik').textContent = wynik;
+        }
+    </script>
+</body>
+</html>

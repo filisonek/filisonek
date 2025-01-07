@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Silni</title>
+</head>
+<body>
+    <h1>Kalkulator Silni</h1>
+    <table>
+        <tr>
+            <td>Liczba:</td>
+            <td><input type="number" id="liczba" min="0"></td>
+        </tr>
+    </table>
+    <button onclick="kalkulatorSilni()">Oblicz silnię</button>
+    <p>Wynik: <span id="wynik"></span></p>
+
+    <script>
+        function silnia(n) {
+            if (n === 0 || n === 1) return 1;
+            return n * silnia(n - 1);
+        }
+
+        function kalkulatorSilni() {
+            const liczba = parseInt(document.getElementById('liczba').value);
+
+            if (isNaN(liczba) || liczba < 0) {
+                document.getElementById('wynik').textContent = "Nieprawidłowe dane!";
+                return;
+            }
+
+            const wynik = silnia(liczba);
+            document.getElementById('wynik').textContent = wynik;
+        }
+    </script>
+</body>
+</html>

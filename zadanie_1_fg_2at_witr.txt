@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator</title>
+</head>
+<body>
+<p>Zadanie 1:</p>
+    <h1>Kalkulator</h1>
+    <table>
+        <tr>
+            <td>Pierwsza liczba:</td>
+            <td><input type="number" id="liczba1"></td>
+        </tr>
+        <tr>
+            <td>Druga liczba:</td>
+            <td><input type="number" id="liczba2"></td>
+        </tr>
+        <tr>
+            <td>Operacja:</td>
+            <td>
+                <select id="operacja">
+                    <option value="+">Dodawanie</option>
+                    <option value="-">Odejmowanie</option>
+                    <option value="*">Mnożenie</option>
+                    <option value="/">Dzielenie</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+    <button onclick="kalkulator()">Oblicz</button>
+    <p>Wynik: <span id="wynik"></span></p>
+
+    <script>
+        function kalkulator() {
+            const liczba1 = parseFloat(document.getElementById('liczba1').value);
+            const liczba2 = parseFloat(document.getElementById('liczba2').value);
+            const operacja = document.getElementById('operacja').value;
+
+            if (isNaN(liczba1) || isNaN(liczba2)) {
+                document.getElementById('wynik').textContent = "Nieprawidłowe dane!";
+                return;
+            }
+
+            let wynik;
+            switch (operacja) {
+                case "+":
+                    wynik = liczba1 + liczba2;
+                    break;
+                case "-":
+                    wynik = liczba1 - liczba2;
+                    break;
+                case "*":
+                    wynik = liczba1 * liczba2;
+                    break;
+                case "/":
+                    if (liczba2 === 0) {
+                        document.getElementById('wynik').textContent = "Dzielenie przez zero!";
+                        return;
+                    }
+                    wynik = liczba1 / liczba2;
+                    break;
+            }
+
+            document.getElementById('wynik').textContent = wynik;
+        }
+    </script>
+</body>
+</html>
+

@@ -6,7 +6,6 @@
     <title>Kalkulator</title>
 </head>
 <body>
-<p>Zadanie 1:</p>
     <h1>Kalkulator</h1>
     <table>
         <tr>

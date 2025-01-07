@@ -1,0 +1,163 @@
+
+Filip Gakan 2AT
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator</title>
+</head>
+<body>
+<p>Zadanie 1:</p>
+    <h1>Kalkulator</h1>
+    <table>
+        <tr>
+            <td>Pierwsza liczba:</td>
+            <td><input type="number" id="liczba1"></td>
+        </tr>
+        <tr>
+            <td>Druga liczba:</td>
+            <td><input type="number" id="liczba2"></td>
+        </tr>
+        <tr>
+            <td>Operacja:</td>
+            <td>
+                <select id="operacja">
+                    <option value="+">Dodawanie</option>
+                    <option value="-">Odejmowanie</option>
+                    <option value="*">Mnożenie</option>
+                    <option value="/">Dzielenie</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+    <button onclick="kalkulator()">Oblicz</button>
+    <p>Wynik: <span id="wynik"></span></p>
+
+    <script>
+        function kalkulator() {
+            const liczba1 = parseFloat(document.getElementById('liczba1').value);
+            const liczba2 = parseFloat(document.getElementById('liczba2').value);
+            const operacja = document.getElementById('operacja').value;
+
+            if (isNaN(liczba1) || isNaN(liczba2)) {
+                document.getElementById('wynik').textContent = "Nieprawidłowe dane!";
+                return;
+            }
+
+            let wynik;
+            switch (operacja) {
+                case "+":
+                    wynik = liczba1 + liczba2;
+                    break;
+                case "-":
+                    wynik = liczba1 - liczba2;
+                    break;
+                case "*":
+                    wynik = liczba1 * liczba2;
+                    break;
+                case "/":
+                    if (liczba2 === 0) {
+                        document.getElementById('wynik').textContent = "Dzielenie przez zero!";
+                        return;
+                    }
+                    wynik = liczba1 / liczba2;
+                    break;
+            }
+
+            document.getElementById('wynik').textContent = wynik;
+        }
+    </script>
+</body>
+</html>
+
+<p>Zadanie 2:</p>
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Silni</title>
+</head>
+<body>
+    <h1>Kalkulator Silni</h1>
+    <table>
+        <tr>
+            <td>Liczba:</td>
+            <td><input type="number" id="liczba" min="0"></td>
+        </tr>
+    </table>
+    <button onclick="kalkulatorSilni()">Oblicz silnię</button>
+    <p>Wynik: <span id="wynik"></span></p>
+
+    <script>
+        function silnia(n) {
+            if (n === 0 || n === 1) return 1;
+            return n * silnia(n - 1);
+        }
+
+        function kalkulatorSilni() {
+            const liczba = parseInt(document.getElementById('liczba').value);
+
+            if (isNaN(liczba) || liczba < 0) {
+                document.getElementById('wynik').textContent = "Nieprawidłowe dane!";
+                return;
+            }
+
+            const wynik = silnia(liczba);
+            document.getElementById('wynik').textContent = wynik;
+        }
+    </script>
+</body>
+</html>
+
+<p>Zadanie 3:</p>
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Fibonacciego</title>
+</head>
+<body>
+    <h1>Kalkulator Ciągu Fibonacciego</h1>
+    <table>
+        <tr>
+            <td>Numer wyrazu:</td>
+            <td><input type="number" id="liczba" min="0"></td>
+        </tr>
+    </table>
+    <button onclick="kalkulatorFibonacciego()">Oblicz wyraz</button>
+    <p>Wynik: <span id="wynik"></span></p>
+
+    <script>
+        function fibonacci(n) {
+            if (n === 0) return 0;
+            if (n === 1) return 1;
+
+            let a = 0, b = 1, wynik = 0;
+            for (let i = 2; i <= n; i++) {
+                wynik = a + b;
+                a = b;
+                b = wynik;
+            }
+            return wynik;
+        }
+
+        function kalkulatorFibonacciego() {
+            const liczba = parseInt(document.getElementById('liczba').value);
+
+            if (isNaN(liczba) || liczba < 0) {
+                document.getElementById('wynik').textContent = "Nieprawidłowe dane!";
+                return;
+            }
+
+            const wynik = fibonacci(liczba);
+            document.getElementById('wynik').textContent = wynik;
+        }
+    </script>
+</body>
+</html>
